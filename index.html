@@ -73,9 +73,9 @@
                 const selectedName = excludePicked[randomIndex];
 				alreadyPicked.add(selectedName);
 				document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is .'
-				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is ..', 200)
-				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is ..', 400)
-				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is ...', 700)
+				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is ..', 250)
+				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is ..', 500)
+				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is ...', 750)
 				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is <b>'+selectedName+'</b>', 1000)
             } else {
 				if (alreadyPicked.size === checkedNames.length) {
