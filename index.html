@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Title: Standup picker
-     Author: Akshay Sikka -->
+	 Author: Akshay Sikka -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,12 +8,12 @@
     <title>Akshay's standup picker</title>
 </head>
 <body>
-    <h1>Consumer standup picker</h1>
+    <center><div><h1>Consumer standup picker</h1>
 	
 	<button type="button" onclick="selectTeam(1)">Product team</button>
 	<button type="button" onclick="selectTeam(2)">AccountB team</button><br><br>
 	
-    <form id="nameForm">
+    <form id="nameForm" style="width:100px; text-align:left;">
 
     <script>
         // An array of names
@@ -72,7 +72,11 @@
                 const randomIndex = Math.floor(Math.random() * excludePicked.length);
                 const selectedName = excludePicked[randomIndex];
 				alreadyPicked.add(selectedName);
-				document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is '+selectedName
+				document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is .'
+				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is ..', 200)
+				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is ..', 400)
+				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is ...', 700)
+				setTimeout(() => document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is <b>'+selectedName+'</b>', 1000)
             } else {
 				if (alreadyPicked.size === checkedNames.length) {
 				    alert("Everyone has already been cycled through once.");
@@ -84,6 +88,7 @@
 		displayOptions();
     </script>
     </form><br>
-	<div id="displaySelectedName" style="font-size:18px;"></div>
+	<div id="displaySelectedName" style="font-size:20px;"></div>
+	</div></center>
 </body>
 </html>
