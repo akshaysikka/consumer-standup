@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akshay's standup picker</title>
+</head>
+<body>
+    <h1>Consumer standup picker</h1>
+	
+	<button type="button" onclick="selectTeam(1)">Product team</button>
+	<button type="button" onclick="selectTeam(2)">AccountB team</button><br><br>
+	
+    <form id="nameForm">
+
+    <script>
+        // An array of names
+		const defaultNames = ["Adrian", "Ben", "James", "John", "Matheus", "Nick", "Niharika", "Rahul", "Resham", "Vish"]
+        let namesArray = Array.from(defaultNames)
+		let alreadyPicked = new Set();
+
+		function displayOptions() {
+			const nameForm = document.getElementById("nameForm");
+			nameForm.innerHTML = '';
+			const displaySelectedName = document.getElementById('displaySelectedName')
+			if (displaySelectedName) {
+				displaySelectedName.innerHTML = '';
+			}
+			namesArray.forEach(name => {
+				const label = document.createElement("label");
+				const checkbox = document.createElement("input");
+				checkbox.type = "checkbox";
+				checkbox.name = "name";
+				checkbox.value = name;
+				checkbox.checked = true;
+				label.appendChild(checkbox);
+				label.appendChild(document.createTextNode(` ${name}`));
+				nameForm.appendChild(label);
+				nameForm.appendChild(document.createElement("br"));
+			});
+			nameForm.appendChild(document.createElement("br"));
+			const selectButton = document.createElement("button");
+			selectButton.type="button"
+			selectButton.onclick=selectRandomName
+			selectButton.textContent="Select"
+			nameForm.appendChild(selectButton);			
+		}
+		
+		function selectTeam(num) {
+			alreadyPicked = new Set();
+			if (num === 2) {
+				namesArray = ["Ben", "Elner", "James", "Kripa", "Masoud", "Tatiana"]			
+			} else {
+				// default
+				namesArray = Array.from(defaultNames)							
+			}
+			displayOptions();
+		}
+
+        function selectRandomName() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checkedNames = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+
+            const excludePicked = checkedNames
+				.filter(checkbox => !alreadyPicked.has(checkbox.value))
+                .map(checkbox => checkbox.value);
+
+            if (excludePicked.length > 0) {
+                const randomIndex = Math.floor(Math.random() * excludePicked.length);
+                const selectedName = excludePicked[randomIndex];
+				alreadyPicked.add(selectedName);
+				document.getElementById('displaySelectedName').innerHTML = 'Today\'s standup leader is '+selectedName
+            } else {
+				if (alreadyPicked.size === checkedNames.length) {
+				    alert("Everyone has already been cycled through once.");
+				} else {
+					alert("Please select at least one name.");
+				}
+            }
+        }
+		displayOptions();
+    </script>
+    </form><br>
+	<div id="displaySelectedName" style="font-size:18px;"></div>
+</body>
+</html>
